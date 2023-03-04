@@ -17,7 +17,11 @@ export class UserService {
   }
 
   async getContactById(id: number) {
-    const user = await this.userRepository.findOne(id);
+    const user = await this.userRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
     if (!user) throw new NotFoundException('Contacto no encontrado');
     return user;
   }
@@ -28,7 +32,11 @@ export class UserService {
   }
 
   async updateContact(id: number, dto: UpdateUserDto) {
-    const user = await this.userRepository.findOne(id);
+    const user = await this.userRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
     if (!user) throw new NotFoundException('Contacto no encontrado');
     const updatedUser = Object.assign(user, dto);
     return await this.userRepository.save(updatedUser);
