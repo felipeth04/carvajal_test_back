@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { IsString } from 'class-validator';
-import { IsArray } from 'class-validator/types/decorator/decorators';
+import { IsString, IsArray } from 'class-validator';
 
 export class CreateUserDto {
   @IsString()
