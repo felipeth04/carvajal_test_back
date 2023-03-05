@@ -17,30 +17,30 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  async getMany() {
-    return await this.userService.getAllContacts();
+  async getAllUsers() {
+    return await this.userService.getAllUsers();
   }
 
   @Get(':id')
-  async getOne(@Param('id', ParseIntPipe) id: number) {
-    return this.userService.getContactById(id);
+  async getUserById(@Param('id', ParseIntPipe) id: number) {
+    return this.userService.getUserById(id);
   }
 
   @Post()
-  async createUser(@Body() dto: CreateUserDto) {
-    return this.userService.createContact(dto);
+  async createUserAccount(@Body() dto: CreateUserDto) {
+    return this.userService.createUserAccount(dto);
   }
 
   @Put(':id')
-  async updateUser(
+  async updateUserData(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateUserDto,
   ) {
-    return this.userService.updateContact(id, dto);
+    return this.userService.updateUserData(id, dto);
   }
 
   @Delete(':id')
-  async deleteUser(@Param('id', ParseIntPipe) id: number) {
-    return this.userService.deleteContact(id);
+  async deleteUserAccount(@Param('id', ParseIntPipe) id: number) {
+    return this.userService.deleteUserAccount(id);
   }
 }
