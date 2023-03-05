@@ -1,20 +1,29 @@
 /* eslint-disable prettier/prettier */
-import { IsString, IsArray } from 'class-validator';
+import { IsString, MaxLength, IsOptional, IsEmail, MinLength } from 'class-validator';
 
 export class CreateUserDto {
   @IsString()
+  @MaxLength(255)
   firstName: string;
+
+  @IsOptional()
   @IsString()
+  @MaxLength(255)
   SecondName: string;
+
   @IsString()
+  @MaxLength(255)
+  lastName: string;
+
+  @IsEmail()
   email: string;
+
   @IsString()
   phone: string;
+
   @IsString()
-  address: string;
-  @IsString()
-  homePhone: string;
-  @IsArray()
-  @IsString({ each: true })
-  tags: string[];
+  @MinLength(8)
+  @MaxLength(255)
+  password: string;
+
 }
