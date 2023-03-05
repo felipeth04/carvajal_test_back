@@ -1,7 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateUserDto, UpdateUserDto } from './dtos';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateUserDto, UpdateUserDto } from './dtos';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -10,39 +14,47 @@ export class UserService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
   ) {}
-
-  async getAllContacts(): Promise<User[]> {
-    const user = await this.userRepository.find();
-    return user;
+  async getAllUsers() {
+    return await this.userRepository.find();
   }
 
-  async getContactById(id: number) {
+  async getUserById(id: number) {
     const user = await this.userRepository.findOne({
       where: {
         id: id,
       },
     });
-    if (!user) throw new NotFoundException('Contacto no encontrado');
+    if (!user) throw new NotFoundException('El usuario no existe');
     return user;
   }
 
-  async createContact(dto: CreateUserDto) {
-    const user = this.userRepository.create(dto);
-    return await this.userRepository.save(user);
+  async createUserAccount(dto: CreateUserDto) {
+    const userExist = await this.userRepository.findOne({
+      where: {
+        email: dto.email,
+      },
+    });
+    if (userExist)
+      throw new BadRequestException('El usuario ya esta registrado');
+
+    const newUser = this.userRepository.create(dto);
+    const user = await this.userRepository.save(newUser);
+    delete user.password;
+    return user;
   }
 
-  async updateContact(id: number, dto: UpdateUserDto) {
+  async updateUserData(id: number, dto: UpdateUserDto) {
     const user = await this.userRepository.findOne({
       where: {
         id: id,
       },
     });
-    if (!user) throw new NotFoundException('Contacto no encontrado');
+    if (!user) throw new NotFoundException('El usuario no existe');
     const updatedUser = Object.assign(user, dto);
     return await this.userRepository.save(updatedUser);
   }
 
-  async deleteContact(id: number) {
+  async deleteUserAccount(id: number) {
     return await this.userRepository.delete(id);
   }
 }
