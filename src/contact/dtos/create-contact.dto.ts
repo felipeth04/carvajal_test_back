@@ -5,7 +5,9 @@ export class CreateContactDto {
   @IsString()
   firstName: string;
   @IsString()
-  SecondName: string;
+  secondName: string;
+  @IsString()
+  lastName: string;
   @IsString()
   email: string;
   @IsString()

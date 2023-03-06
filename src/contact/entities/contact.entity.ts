@@ -14,7 +14,7 @@ export class Contact {
   firstName: string;
 
   @Column({ type: 'varchar', length: 100 })
-  SecondName: string;
+  secondName: string;
 
   @Column({ type: 'varchar', length: 100 })
   lastName: string;
