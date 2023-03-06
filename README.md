@@ -10,7 +10,7 @@ estos son los links de los repositorios:
 
 **Backend:** Está corriendo en cloudfare workers
 
-**Base de datos:** Está corriendo en AWS en el servicio de RDS
+**Base de datos:** Está corriendo en Railway
 
 **Frontend:** Está desplegado en vercel, este es el link 
 <a target="_blank">www.carvajal-test-front.app<a/> 
@@ -27,6 +27,16 @@ Si desea correr el código en la maquina local debe seguir los siguientes pasos:
 create database contact_app;  
 use contact_app;
 ```
+- adicional debe crear un archivo .env con las siguientes variables de entorno:
+
+HOST_DB=
+PORT_DB=
+USER_DB=
+PASS_DB=
+NAME_DB=contact_app
+
+esto es necesario para el correcto despliegue en local.
+
 ## Backend
 - una vez hecho esto deberá clonar el **backend** de la aplicación corriendo el siguiente comando:
 ```bash
