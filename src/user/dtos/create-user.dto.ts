@@ -9,7 +9,7 @@ export class CreateUserDto {
   @IsOptional()
   @IsString()
   @MaxLength(255)
-  SecondName: string;
+  secondName: string;
 
   @IsString()
   @MaxLength(255)
