@@ -8,7 +8,10 @@ estos son los links de los repositorios:
 
 ## Esta aplicación está corriendo actualmente en producción, esta es la información:
 
-**Backend:** Está corriendo en cloudfare workers
+#### Por ahora el backend no esta en producción, esto afecta al frontend y a la base de datos las cuales ya estan disponibles en los links de la parte de abajo, se debe entonces correr en local el backend para el correcto funcionamiento.
+
+**Backend:** Estoy intentando desplegar el backend en paginas
+gratuitas, pero aun no encuentro alguna, **por ahora se debe correr en local el backend**
 
 **Base de datos:** Está corriendo en Railway
 
